@@ -3,6 +3,9 @@ import smtplib
 import time
 from datetime import datetime
 from email.mime.text import MIMEText
+import boto3
+
+s3 = boto3.client("s3")
 
 def posli_email(zprava):
         email = "rezacdaniel2@gmail.com"
@@ -48,6 +51,7 @@ weby = [
 while True:
     for web in weby:
         zkontroluj_web(web)
+        s3.upload_file("monitoring_log.txt", "muj-prvni-bucket-dan-123", "monitoring_log.txt")
         time.sleep(5)
     
 
