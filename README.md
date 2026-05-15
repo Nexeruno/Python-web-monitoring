@@ -29,6 +29,18 @@ The project regularly checks the availability of selected websites, measures res
 - Log upload to AWS S3
 - Secure configuration using `.env`
 
+## How to Run
+1. Create '.env' file based on .env.example
+2. Start the stack:
+'''bash
+cd monitoring-stack
+docker compose up -d --build
+
+## Open services
+Grafana: http://localhost:3000
+Prometheus: http://localhost:9090
+Metrics: http://localhost:8000
+
   # Web Monitoring System
 
 Jednoduchý monitoring webových stránek napsaný v Pythonu.
