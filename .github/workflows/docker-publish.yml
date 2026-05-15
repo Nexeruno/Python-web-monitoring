@@ -4,6 +4,8 @@ on:
     push:
         branches:
             - main
+        tags:
+            - v*
 
 permissions:
     contents: read
@@ -28,10 +30,10 @@ jobs:
 
             - name: Build Docker image
               run: |
-                docker build -t ghcr.io/nexeruno/python-web-monitoring:latest .
+                docker build -t ghcr.io/nexeruno/python-web-monitoring:${{ github.ref_name }} .
 
             - name: Push Docker image
               run: |
-                docker push ghcr.io/nexeruno/python-web-monitoring:latest    
+                docker push ghcr.io/nexeruno/python-web-monitoring:${{ github.ref_name }}    
                 
 
