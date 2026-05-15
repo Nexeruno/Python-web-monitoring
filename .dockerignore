@@ -1,0 +1,10 @@
+.env
+monitoring_log.txt
+*.log
+__pycache__/
+*.pyc
+venv/
+.venv/
+.git/
+grafana-data/
+prometheus-data/
