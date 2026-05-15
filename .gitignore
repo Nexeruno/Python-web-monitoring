@@ -2,5 +2,7 @@
 monitoring_log.txt
 grafana-data/
 prometheus-data/
+**/grafana-data/
+**/grafana-data/
 _pycache__/
 *.pyc
