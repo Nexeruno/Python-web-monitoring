@@ -1,3 +1,6 @@
+## Dashboard Preview
+![Grafana Dashboard](screenshots/monitoring.jpg)
+
 # Web Monitoring System
 
 A simple website monitoring system written in Python.
