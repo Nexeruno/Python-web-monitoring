@@ -1,4 +1,6 @@
 .env
 monitoring_log.txt
+grafana-data/
+prometheus-data/
 _pycache__/
 *.pyc
