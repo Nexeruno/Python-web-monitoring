@@ -1,3 +1,5 @@
+[![Build and Publish Docker Image](https://github.com/Nexeruno/Python-web-monitoring/actions/workflows/docker-publish.yml/badge.svg)](https://github.com/Nexeruno/Python-web-monitoring/actions/workflows/docker-publish.yml)
+
 ## Dashboard Preview
 ![Grafana Dashboard](screenshots/monitoring.jpg)
 
