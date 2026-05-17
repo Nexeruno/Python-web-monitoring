@@ -29,8 +29,10 @@ def test_web_nefunguje():
 def test_web_nedostupny():
     web = {"name": "test", "url": "https://google.com"}
     
-    with patch("monitoring_system.requests.get") as mock_get:
+    with patch("monitoring_system.requests.get") as mock_get, \
+         patch("monitoring_system.requests.post") as mock_post:
         mock_get.side_effect = Exception("Connection error")
+        mock_post.return_value = MagicMock(status_code=200)
         
         result = zkontroluj_web(web)
         assert result == False
