@@ -8,7 +8,7 @@ A simple website monitoring system written in Python.
 The project regularly checks the availability of selected websites, measures response time, writes results to a log file, sends Slack alerts when a website is unavailable, and exposes metrics for Prometheus. The data is then displayed in a Grafana dashboard. The log file is also uploaded to AWS S3.
 
 ## Dashboard Preview
-![Grafana Dashboard](screenshots/monitoring.png)
+![Grafana Dashboard](screenshots/monitoring.jpg)
 
 ## Technologies Used
 * Python
