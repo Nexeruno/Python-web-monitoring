@@ -28,7 +28,7 @@ def posli_slack(zprava):
     else:
         print(f"Slack chyba: {odpoved.status_code} - {odpoved.text}")
 
-def zkontroluj_web(url):
+def zkontroluj_web(web):
     name = web["name"]
     url = web["url"]
     cas = datetime.now().strftime("%d.%m.%Y %H:%M:%S")
@@ -40,20 +40,21 @@ def zkontroluj_web(url):
             print(f"{url}- Web funguje! ({odpoved.elapsed.total_seconds()}s)")
             with open("monitoring_log.txt", "a") as f:
                 f.write(f"{cas} - {url} funguje\n")
+            return True
         else:
             WEB_STATUS.labels(name=name, url=url).set(0)
             WEB_RESPONSE_TIME.labels(name=name, url=url).set(odpoved.elapsed.total_seconds())
             print(f"{url}- Web nefunguje! ({odpoved.elapsed.total_seconds()}s)")
             with open("monitoring_log.txt", "a") as f:
                 f.write(f"{cas} - {url} nefunguje\n")
-            
+            return False
     except:
         WEB_STATUS.labels(name=name, url=url).set(0)
         WEB_RESPONSE_TIME.labels(name=name, url=url).set(0)
         with open("monitoring_log.txt", "a") as f:
             f.write(f"{cas} - {url} nefunguje\n")
         posli_slack(f"{url} nefunguje! Čas: {cas}")
-        return
+        return False
 
 weby = [
     {"name": "Google", "url": "https://www.google.com"},
@@ -62,11 +63,12 @@ weby = [
     {"name": "Dont work", "url":"https://www.dont-work-123.com"}
 ]
 
-start_http_server(8000)
-print("Prometheus metriky bezi na http://localhost:8000/metrics")
+if __name__ == "__main__":
+    start_http_server(8000)
+    print("Prometheus metriky bezi na http://localhost:8000/metrics")
 
-while True:
-    for web in weby:
-        zkontroluj_web(web)
-        s3.upload_file("monitoring_log.txt", AWS_BUCKET_NAME, "monitoring_log.txt")
-        time.sleep(5)
+    while True:
+        for web in weby:
+            zkontroluj_web(web)
+            s3.upload_file("monitoring_log.txt", AWS_BUCKET_NAME, "monitoring_log.txt")
+            time.sleep(5)
