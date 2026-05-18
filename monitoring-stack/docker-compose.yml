@@ -7,8 +7,7 @@ services:
       - ../.env
     ports:
       - "8000:8000"
-    volumes:
-      - C:/Users/danzb/.aws:/root/.aws:ro
+    
     restart: unless-stopped
   prometheus:
     image: prom/prometheus
