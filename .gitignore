@@ -6,3 +6,4 @@ prometheus-data/
 **/grafana-data/
 _pycache__/
 *.pyc
+docker-compose.override.yml
