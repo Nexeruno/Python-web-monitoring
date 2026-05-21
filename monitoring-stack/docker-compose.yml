@@ -4,9 +4,11 @@ services:
       context: ..
       dockerfile: Dockerfile
     env_file: 
-      - ../.env
+      - .env
     ports:
       - "8000:8000"
+    volumes:
+        - /root/.aws:/root/.aws:ro
     
     restart: unless-stopped
   prometheus:
